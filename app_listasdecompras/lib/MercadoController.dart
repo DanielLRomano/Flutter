@@ -8,10 +8,11 @@ class MercadoController extends ChangeNotifier {
   // Getter para acessar a lista de produtos
   List<Produtos> get produtos => _produtos;
 
+  // Método para adicionar um novo produto à lista
 // Método para adicionar um novo produto à lista
 void adicionarProduto(String descricao, String tipo) {
-  // Verifica se a descrição e o tipo não estão vazios
   if (descricao.isNotEmpty && tipo.isNotEmpty) {
+    // Verifica se a descrição e o tipo não estão vazios
     // Verifica se o produto já existe na lista
     bool produtoExistente = _produtos.any((produto) => produto.descricao == descricao);
     if (!produtoExistente) {
@@ -20,8 +21,6 @@ void adicionarProduto(String descricao, String tipo) {
       _produtos.add(Produtos(descricao, tipo, false, dataAtual));
       // Notifica os ouvintes (widgets) sobre a mudança no estado
       notifyListeners();
-    } else {
-      
     }
   }
 }
