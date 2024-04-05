@@ -8,6 +8,7 @@ class ContatoModel {
   String telefone;
   String endereco;
 
+  //Construtor 
   ContatoModel({
     required this.id,
     required this.nome,
@@ -15,5 +16,25 @@ class ContatoModel {
     required this.telefone,
     required this.endereco,
   });
+
   //Mapeamento
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'nome': nome,
+      'email': email,
+      'telefone': telefone,
+      'endereco': endereco,
+    };
+  }
+
+  factory ContatoModel.fromMap(Map<String, dynamic> map) {
+    return ContatoModel(
+      id: map['id'],
+      nome: map['nome'],
+      email: map['email'],
+      telefone: map['telefone'],
+      endereco: map['endereco'],
+    );
+  }
 }
