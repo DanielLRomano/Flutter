@@ -1,7 +1,6 @@
-import 'package:app_carros/Controller.dart';
-import 'package:app_carros/View.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'controller.dart';
+import 'view.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,7 +8,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   final CarroController controllerCarros = CarroController();
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
