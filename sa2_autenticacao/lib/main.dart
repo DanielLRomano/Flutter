@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:sa2_autenticacao_configuracao/View/Configuracoes.dart';
 import 'package:sa2_autenticacao_configuracao/View/Login.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MaterialApp(
+    initialRoute: '/configuracoes',  // Rota inicial
+    routes: {
+      '/configuracoes': (context) => Configuracoes(email: 'daniel@daniel.com'),
+      '/login': (context) => LoginScreen(),
+    },
+  ));
 }
 
 class MyApp extends StatelessWidget {
