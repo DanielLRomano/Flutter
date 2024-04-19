@@ -23,6 +23,16 @@ class _PaginaCadastroState extends State<PaginaCadastro> {
     Usuario usuario = Usuario(nome: name, email: email, senha: password, id: null); // Cria um novo objeto de Usuário
 
     BancoDadosCrud bancoDados = BancoDadosCrud(); // Instancia o controlador do banco de dados
+
+    bool emailExists = await bancoDados.existsEmail(email);
+
+    if (emailExists) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('E-mail já cadastrado!')),
+      );
+      return;
+    }
+    
     try {
       bancoDados.create(usuario); // Chama o método para criar o usuário no banco de dados
       ScaffoldMessenger.of(context).showSnackBar(
@@ -35,6 +45,8 @@ class _PaginaCadastroState extends State<PaginaCadastro> {
       );
     }
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
