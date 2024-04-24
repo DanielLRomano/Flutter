@@ -1,0 +1,4 @@
+- HomePage() => lista de produtos - V
+    - Adicionar novos produtos
+        - Modelo (produtos) - M 
+        - Controller (produtos) - C
