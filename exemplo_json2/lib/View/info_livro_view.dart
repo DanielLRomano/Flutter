@@ -11,7 +11,13 @@ class LivroInfoPage extends StatelessWidget {
       ),
       body: Center(
         child: Column(
-          children: [],
+          children: [
+            Text("Titulo do Livro"),
+            Text("Autor do Livro"),
+            Text("Sinopse do Livro"),
+            Text("Categoria do Livro"),
+            Text("ISBN do Livro"),
+          ],
         ),
       ),
     );
