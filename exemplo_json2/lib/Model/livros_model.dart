@@ -1,20 +1,21 @@
 class Livro {
-  //Atributos
+  //atributos
   final String titulo;
   final String autor;
   final String sinopse;
   final String categoria;
   final int isbn;
+  final String capa;
 
-  //Construtor
+  //construtor
   Livro(
       {required this.titulo,
       required this.autor,
       required this.sinopse,
       required this.categoria,
-      required this.isbn});
-
-  //Métodos (mapeamento)
+      required this.isbn,
+      required this.capa});
+  //métodos (mapeamento)
   Map<String, dynamic> toJson() {
     return {
       'titulo': titulo,
@@ -22,6 +23,7 @@ class Livro {
       'sinopse': sinopse,
       'categoria': categoria,
       'isbn': isbn,
+      'capa': capa,
     };
   }
 
@@ -32,6 +34,7 @@ class Livro {
       sinopse: map['sinopse'],
       categoria: map['categoria'],
       isbn: map['isbn'],
+      capa: map['capa'],
     );
   }
 }

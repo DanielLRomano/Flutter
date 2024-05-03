@@ -1,23 +1,43 @@
 [
     {
-        "titulo": "O fim da eternidade",
+        "titulo": " O Fim da Eternidade",
         "autor": "Isaac Asimov",
-        "sinopse": "O fim da eternidade é um livro de ficção cientifica",
-        "categoria": "ficção cientifica",
-        "isbn": 9788521603025
+        "sinopse": "O Fim da Eternidade é um livro de ficção científica escrito por Isaac Asimov, publicado em 1985.",
+        "categoria": "Ficção Científica",
+        "isbn": 9788521603065,
+        "capa":"assets/img/img01.jpg"
     },
     {
-        "titulo": "O morro dos ventos Uivantes",
+        "titulo": "O Morro dos Ventos Uivantes",
         "autor": "Emily Bronte",
-        "sinopse": "O morro dos ventos Uivantes é um livro de terror",
+        "sinopse": "O Morro dos Ventos Uivantes é um livro de ficção escrito por",
         "categoria": "Terror",
-        "isbn": 9788524603024
+        "isbn": 9788521644445,
+        "capa":"assets/img/img02.jpg"
     },
     {
-        "titulo": "Memorias Postuma sw Brás Cubas",
+        "titulo": "Mémorias Póstumas de Brás Cubas",
         "autor": "Machado de Assis",
-        "sinopse": "Memorias Postuma sw Brás Cubas é um livro de romance realista",
+        "sinopse": "Mémorias Póstumas de Brás Cubas é um livro de ficção escrito por Machado de Assis.",
         "categoria": "Romance Realista",
-        "isbn": 9783524603023
+        "isbn": 9788521603067,
+        "capa":"assets/img/img03.jpg"
+    },
+    {
+        "titulo": "O Senhor dos Anéis",
+        "autor": "JKTolkin",
+        "sinopse": "O Senhor dos Anéis é um livro de ficção científica escrito por",
+        "categoria": "Ficção Científica",
+        "isbn": 9788521603065,
+        "capa":"assets/img/img03.jpg"
+    }
+    ,
+    {
+        "titulo": "CEM  Anos de Solidão",
+        "autor": "Gabriel Garcia Marques",
+        "sinopse": "O Senhor dos Anéis é um livro de ficção científica escrito por",
+        "categoria": "Ficção Científica",
+        "isbn": 9788521603065,
+        "capa":"assets/img/img03.jpg"
     }
 ]
