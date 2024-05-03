@@ -11,6 +11,7 @@ class CarroCadastroScreen extends StatefulWidget {
 }
 
 class _CarroCadastroScreenState extends State<CarroCadastroScreen> {
+  final _formKey = GlobalKey<FormState>();
   TextEditingController _placaController = TextEditingController();
   TextEditingController _modeloController = TextEditingController();
   TextEditingController _anoController = TextEditingController();
@@ -31,6 +32,7 @@ class _CarroCadastroScreenState extends State<CarroCadastroScreen> {
         child: Center(
           child: SingleChildScrollView(
             child: Form(
+              key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -127,7 +129,11 @@ class _CarroCadastroScreenState extends State<CarroCadastroScreen> {
                     child: Text('Tirar Foto'),
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _cadastrarCarro();
+                      }
+                    },
                     child: Text("Cadastrar"),
                   )
                 ],
@@ -147,5 +153,9 @@ class _CarroCadastroScreenState extends State<CarroCadastroScreen> {
         _imagemSelecionada = File(pickedFile.path);
       });
     }
+  }
+
+  void _cadastrarCarro() {
+    //Cadastrar
   }
 }
