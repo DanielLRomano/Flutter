@@ -40,7 +40,8 @@ class Carro {
       'valor': valor,
     };
   }
-  factory Carro.fromJson(Map<String,dynamic> map) {
+
+  factory Carro.fromJson(Map<String, dynamic> map) {
     return Carro(
       placa: map['placa'],
       modelo: map['modelo'],

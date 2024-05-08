@@ -1,7 +1,10 @@
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:projeto_json/Controller/carros_controller.dart';
+import 'package:projeto_json/Model/carros_model.dart';
 
 class CarroCadastroScreen extends StatefulWidget {
   const CarroCadastroScreen({super.key});
@@ -14,12 +17,20 @@ class _CarroCadastroScreenState extends State<CarroCadastroScreen> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController _placaController = TextEditingController();
   TextEditingController _modeloController = TextEditingController();
+  TextEditingController _marcaController = TextEditingController();
   TextEditingController _anoController = TextEditingController();
   TextEditingController _corController = TextEditingController();
   TextEditingController _descricaoController = TextEditingController();
   TextEditingController _valorController = TextEditingController();
-  TextEditingController _marcaController = TextEditingController();
+
   File? _imagemSelecionada;
+
+  CarrosController _controller = CarrosController();
+
+  @override
+  void initState() {
+    _controller.loadCarrosFromFile();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +63,7 @@ class _CarroCadastroScreenState extends State<CarroCadastroScreen> {
                     decoration: const InputDecoration(labelText: 'Modelo'),
                     validator: (value) {
                       if (value!.trim().isEmpty) {
-                        return 'Modelo Não Pode Ser Vazio';
+                        return 'Modelo Não Pode Ser Vazia';
                       } else {
                         return null;
                       }
@@ -63,7 +74,7 @@ class _CarroCadastroScreenState extends State<CarroCadastroScreen> {
                     decoration: const InputDecoration(labelText: 'Marca'),
                     validator: (value) {
                       if (value!.trim().isEmpty) {
-                        return 'Marca Não Pode Ser Vazio';
+                        return 'Marca Não Pode Ser Vazia';
                       } else {
                         return null;
                       }
@@ -74,7 +85,7 @@ class _CarroCadastroScreenState extends State<CarroCadastroScreen> {
                     decoration: const InputDecoration(labelText: 'Ano'),
                     validator: (value) {
                       if (value!.trim().isEmpty) {
-                        return 'Ano Não Pode Ser Vazio';
+                        return 'Ano Não Pode Ser Vazia';
                       } else {
                         return null;
                       }
@@ -85,7 +96,7 @@ class _CarroCadastroScreenState extends State<CarroCadastroScreen> {
                     decoration: const InputDecoration(labelText: 'Cor'),
                     validator: (value) {
                       if (value!.trim().isEmpty) {
-                        return 'Cor Não Pode Ser Vazio';
+                        return 'Cor Não Pode Ser Vazia';
                       } else {
                         return null;
                       }
@@ -93,10 +104,10 @@ class _CarroCadastroScreenState extends State<CarroCadastroScreen> {
                   ),
                   TextFormField(
                     controller: _descricaoController,
-                    decoration: const InputDecoration(labelText: 'Descrição'),
+                    decoration: const InputDecoration(labelText: 'Descricao'),
                     validator: (value) {
                       if (value!.trim().isEmpty) {
-                        return 'Descrição Não Pode Ser Vazio';
+                        return 'Descricao Não Pode Ser Vazia';
                       } else {
                         return null;
                       }
@@ -107,7 +118,7 @@ class _CarroCadastroScreenState extends State<CarroCadastroScreen> {
                     decoration: const InputDecoration(labelText: 'Valor'),
                     validator: (value) {
                       if (value!.trim().isEmpty) {
-                        return 'Valor Não Pode Ser Vazio';
+                        return 'Valor Não Pode Ser Vazia';
                       } else {
                         return null;
                       }
@@ -155,7 +166,43 @@ class _CarroCadastroScreenState extends State<CarroCadastroScreen> {
     }
   }
 
+  Carro criarObjeto() {
+    return Carro(
+        placa: _placaController.text,
+        modelo: _modeloController.text,
+        marca: _marcaController.text,
+        ano: int.parse(_anoController.text),
+        cor: _corController.text,
+        descricao: _descricaoController.text,
+        foto: _imagemSelecionada!.path,
+        valor: double.parse(_valorController.text));
+  }
+
+  void _limparValores() {
+    _placaController.clear();
+    _modeloController.clear();
+    _marcaController.clear();
+    _anoController.clear();
+    _corController.clear();
+    _descricaoController.clear();
+    _valorController.clear();
+    _imagemSelecionada = null;
+    setState(() {});
+  }
+
   void _cadastrarCarro() {
-    //Cadastrar
+    // verificação
+    //cadastro
+    _controller.addCarro(criarObjeto());
+    //salvar
+    _controller.saveCarrosToFile();
+    //limpar os campos
+    _limparValores();
+    //SnackBar
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text("Carro Cadastrado com Sucesso"),
+      ),
+    );
   }
 }
