@@ -26,9 +26,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: [
-          ElevatedButton(
-              onPressed:,
-              child: Text("Recarregar")),
+          ElevatedButton(onPressed: () {}, child: Text("Recarregar")),
           Expanded(
             child: ListView.builder(
               itemCount: _produtoController.produtos.length,
