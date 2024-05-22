@@ -11,7 +11,7 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   final WeatherController _controller = WeatherController();
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _cidadeController = TextEditingController();
+  final TextEditingController _cityController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,18 +26,51 @@ class _SearchScreenState extends State<SearchScreen> {
               key: _formKey,
               child: Column(children: [
                 TextFormField(
-                  decoration: const InputDecoration(labelText: 'Digite a cidade'),
-                  controller: _cidadeController,
+                  decoration:
+                      const InputDecoration(labelText: 'Digite a cidade'),
+                  controller: _cityController,
                   validator: (value) {
                     if (value!.trim().isEmpty) {
                       return 'Insira a cidade';
                     }
                     return null;
                   },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      _findCity(_cityController.text);
+                    }
+                  },
+                  child: const Text("Pesquisar"),
                 )
               ]),
             ),
           ),
         ));
+  }
+
+  Future<void> _findCity(String city) async {
+    if(await _controller.findCity(city)){
+      //snackbar
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Cidade encontrada!"),
+          duration: const Duration(seconds: 1),
+        ),
+      );
+      Navigator.pushNamed(context, "/details");
+    }else{
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Cidade não encontrada!"),
+          duration: const Duration(seconds: 1),
+        ),
+      );
+    }
+
   }
 }
