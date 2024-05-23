@@ -18,14 +18,13 @@ class _SearchScreenState extends State<SearchScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _cityController = TextEditingController();
   final CityDataBaseService _dbService = CityDataBaseService();
-  List<City> _cityList =  [];
+  List<City> _cityList = [];
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _cityList = _dbService.getAllCities() as List<City>;
-    
   }
 
   @override
@@ -59,23 +58,6 @@ class _SearchScreenState extends State<SearchScreen> {
                     },
                     child: const Text("Pesquisar"),
                   ),
-                  FutureBuilder(
-                    future: _dbService.getAllCities(), 
-                    builder: (context,snapshot){
-                      if(_cityList.isEmpty){
-                        return const Text("");
-                      }else{
-                        return ListView.builder(
-                          itemBuilder: _cityList,
-                          itemCount: _cityList.length,
-                          child: ListTile(
-                            title:
-
-                          )
-                          );
-
-                      }
-                    })
                 ]))),
       ),
     );
