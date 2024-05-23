@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:projeto_json/Controller/carros_controller.dart';
 
+import 'info_carro_view.dart';
+
 class CarrosListarScreen extends StatefulWidget {
   const CarrosListarScreen({super.key});
 
@@ -37,6 +39,12 @@ class _CarrosListarScreenState extends State<CarrosListarScreen> {
                                 File(controller.carroList[index].foto)),
                             title: Text(controller.carroList[index].modelo),
                             subtitle: Text(controller.carroList[index].marca),
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CarroInfoPage(
+                                          info: controller.carroList[index],
+                                        ))),
                           );
                         },
                       );

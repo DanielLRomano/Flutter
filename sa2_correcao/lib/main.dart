@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'View/LoginPageView.dart';
+import 'package:sa2_correcao/ViewLogin.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "SA2",
       debugShowCheckedModeBanner: false,
-      home: PaginaLogin(),
+      home: LoginScreen()
     );
   }
 }

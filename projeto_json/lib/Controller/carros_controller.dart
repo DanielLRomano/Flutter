@@ -33,4 +33,29 @@ class CarrosController {
       carroList = [];
     }
   }
+
+  // Upload do json
+  Future<void> uploadCarrosfromFile(List<Carro> carros) async {
+    try {
+      Directory appDocDir = await getApplicationDocumentsDirectory();
+      String path = appDocDir.path;
+      final file = File('$path/carros.json');
+      final jsonList = carros.map((carro) => carro.toJson()).toList();
+      await file.writeAsString(jsonEncode(jsonList));
+    } catch (e) {
+      print('Erro ao fazer upload do arquivo: $e');
+    }
+  }
+
+  // Deletar do json
+  Future<void> deleteCarrosfromFile() async {
+    try {
+      Directory appDocDir = await getApplicationDocumentsDirectory();
+      String path = appDocDir.path;
+      final file = File('$path/carros.json');
+      await file.delete();
+    } catch (e) {
+      print('Erro ao deletar arquivo: $e');
+    }
+  }
 }

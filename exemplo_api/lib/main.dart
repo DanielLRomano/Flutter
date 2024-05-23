@@ -1,6 +1,5 @@
+import 'package:exemplo_api/screen.dart';
 import 'package:flutter/material.dart';
-
-import 'screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,8 +14,9 @@ class MyApp extends StatelessWidget {
       title: 'Exemplo API',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+
       ),
-      home: WeatherScreen(),
+      home:WeatherScreen(), 
     );
   }
 }

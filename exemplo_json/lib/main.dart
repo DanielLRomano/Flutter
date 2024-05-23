@@ -1,10 +1,9 @@
-import 'package:exemplo_json/View/ProdutosView.dart';
 import 'package:flutter/material.dart';
+import '../View/ProdutosView.dart';
 
-void main(List<String> args) {
+void main() {
   runApp(MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue
       ),
-      home: HomePage(),
+      home:HomePage(),
     );
   }
 }

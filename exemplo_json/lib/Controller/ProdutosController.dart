@@ -1,15 +1,15 @@
-import 'dart:convert'; // Para lidar com JSON
-import 'dart:io'; // Para operações de arquivo
+import 'dart:convert';
+import 'dart:io';
 
 import 'package:exemplo_json/Model/ProdutosModel.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
-
 class ProdutoController {
-  // Atributo
-  final List<Produto> _produtos = [];
+  //atributo
+ final List<Produto> _produtos = [];
+  List<Produto> get produtos =>
+      _produtos; // Getter para acessar a lista de produtos
 
-  List<Produto> get produtos => _produtos;
 
   // Método para carregar produtos do arquivo JSON
   Future<void> loadProdutos() async {
@@ -21,6 +21,7 @@ class ProdutoController {
     // Converte os objetos JSON em instâncias de Produto e adiciona à lista de produtos
     _produtos.addAll(jsonList.map((e) => Produto.fromJson(e)));
   }
+
 
   // Método para salvar produtos no arquivo JSON
   Future<void> saveProdutos() async {
@@ -34,8 +35,11 @@ class ProdutoController {
     await File(filePath).writeAsString(json.encode(jsonList));
   }
 
+
   // Método para adicionar um novo produto à lista
   void adicionarProduto(Produto produto) {
     _produtos.add(produto);
   }
+
+
 }

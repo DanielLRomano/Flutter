@@ -1,21 +1,20 @@
-// ignore_for_file: prefer_const_constructors
+import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart'; // Importa o pacote Flutter para utilizar os widgets e funcionalidades do Material Design
-import 'View/LoginPageView.dart'; // Importa o arquivo LoginPageView.dart, que contém a definição da tela de login
+import 'View/LoginScreen.dart';
 
 void main() {
-  runApp(MyApp()); // Inicia a execução do aplicativo, passando uma instância de MyApp para runApp
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key}); // Construtor da classe MyApp, que herda de StatelessWidget
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp( // Retorna um MaterialApp, que configura aspectos visuais e comportamentais do aplicativo
-      title: "SA3", // Define o título do aplicativo
-      debugShowCheckedModeBanner: false, // Oculta o banner de debug no canto superior direito da tela
-      home: PaginaLogin(), // Define a tela inicial do aplicativo como a classe PaginaLogin
+    return MaterialApp(
+      title: "SA3",
+      debugShowCheckedModeBanner: false,
+      home: LoginScreen()
     );
   }
 }
