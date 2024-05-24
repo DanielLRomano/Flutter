@@ -11,7 +11,7 @@ class CityDataBaseService {
       """CREATE TABLE cities(
         id SERIAL, 
         cityname TEXT, 
-        favoritecities BOOLEAN DEFAULT false)""";
+        favoritecities BOOLEAN)""";
 
   Future<Database> _getDatabase() async {
     return openDatabase(
@@ -30,15 +30,31 @@ class CityDataBaseService {
     return List.generate(
       maps.length,
       (i) {
-        return City.fromMap(
-            maps[i]); // Converte os resultados da consulta para objetos City
+        return City.fromMap(maps[
+            i]); // Converte os resultados da consulta para objetos ContactModel
       },
     );
   }
 
-  Future<int> insertCity(City city) async {
-    Database db = await _getDatabase();
-    return await db.insert(TABLE_NOME, city.toMap());
+  Future<void> insertCity(City city) async {
+    try {
+      Database db = await _getDatabase();
+      print("banco");
+      db.insert(TABLE_NOME, city.toMap());
+    } catch (e) {
+      print(e);
+    }
   }
-  
+
+  //update
+  Future<void> updateCity(City city) async {
+    try {
+      Database db = await _getDatabase();
+      print("banco");
+      db.update(TABLE_NOME, city.toMap(),
+          where: "cityname =?", whereArgs: [city.cityName]);
+    } catch (e) {
+      print(e);
+    }
+  }
 }
