@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_api_geo/Controller/city_db_controller.dart';
 import 'package:projeto_api_geo/Service/city_db_service.dart';
 
 import '../Controller/weather_controller.dart';
@@ -16,7 +17,7 @@ class _SearchScreenState extends State<SearchScreen> {
   final WeatherController _controller = WeatherController();
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _cityController = TextEditingController();
-  final CityDataBaseService _dbService = CityDataBaseService();
+  final CityDbController _dbController = CityDbController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +50,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             _findCity(_cityController.text);
                           }
                         },
-                        child: const Text("Pesquisar"),
+                        child: const Text("Search"),
                       ),
                       const SizedBox(
                         height: 20,
@@ -57,13 +58,13 @@ class _SearchScreenState extends State<SearchScreen> {
                     ]))),
             Expanded(
                 child: FutureBuilder(
-                    future: _dbService.getAllCities(),
+                    future: _dbController.listCities(),
                     builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.done) {
+                      if (_dbController.cities().isNotEmpty) {
                         return ListView.builder(
-                            itemCount: snapshot.data!.length,
+                            itemCount: _dbController.cities().length,
                             itemBuilder: (context, index) {
-                              final city = snapshot.data![index];
+                              final city = _dbController.cities()[index];
                               return ListTile(
                                   title: Text(city.cityName),
                                   onTap: () {
@@ -71,7 +72,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                   });
                             });
                       } else {
-                        return const Text("Sem Histórico");
+                        return const Text("Empty List");
                       }
                     }))
           ],
@@ -83,8 +84,8 @@ class _SearchScreenState extends State<SearchScreen> {
   Future<void> _findCity(String city) async {
     if (await _controller.findCity(city)) {
       //snackbar
-      City cidade = City(cityName: city, favoriteCities: false);
-      _dbService.insertCity(cidade);
+      City cidade = City(cityName: city, favoriteCities: 0);
+      _dbController.addCities(cidade);
       print("ok");
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -92,6 +93,7 @@ class _SearchScreenState extends State<SearchScreen> {
           duration: Duration(seconds: 1),
         ),
       );
+      setState(() {});
       Navigator.push(
           context,
           MaterialPageRoute(
