@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "935718723679",
+    "project_id": "teste-firebase-noite",
+    "storage_bucket": "teste-firebase-noite.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:935718723679:android:017116a8d2d7813d503bea",
+        "android_client_info": {
+          "package_name": "br.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "935718723679-4p2eef4nqe1ub9qpi63ksaufq6pa8i5t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2VzaWK3mKnF8yimnoE9tM74SRSKrAnUs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "935718723679-4p2eef4nqe1ub9qpi63ksaufq6pa8i5t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
