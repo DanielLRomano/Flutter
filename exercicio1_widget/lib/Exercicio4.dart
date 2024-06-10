@@ -5,32 +5,30 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: DefaultTabController(
-        length: 3, // Número de abas
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text('Exercicio 4'),
-            bottom: TabBar(
-              tabs: [
-                Tab(icon: Icon(Icons.home), text: 'Início'),
-                Tab(icon: Icon(Icons.shopping_cart), text: 'Compras'),
-                Tab(icon: Icon(Icons.settings), text: 'Configurações'),
-              ],
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Barra de Navegação Personalizada - Exercicio 4"),
+        ),
+        body: Center(child: Text("Corpo de Navegação")),
+        bottomNavigationBar: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
             ),
-          ),
-          body: TabBarView(
-            children: [
-              // Conteúdo da aba 'Início'
-              Center(child: Text('Página Inicial')),
-              // Conteúdo da aba 'Compras'
-              Center(child: Text('Página de Compras')),
-              // Conteúdo da aba 'Configurações'
-              Center(child: Text('Página de Configurações')),
-            ],
-          ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: 'Configurações',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Perfil',
+            ),
+          ],
         ),
       ),
     );

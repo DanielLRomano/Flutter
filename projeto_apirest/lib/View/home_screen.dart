@@ -19,10 +19,10 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, "/lista");
-                },
-                child: const Text("Lista de Produto"))
+              onPressed: (){
+                Navigator.pushNamed(context, "/lista");
+              }, 
+              child: const Text("Lista de Produto"))
           ],
         ),
       ),

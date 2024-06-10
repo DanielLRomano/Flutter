@@ -1,3 +1,4 @@
+import 'package:exercicio1_widget/Exercicio1.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,14 +10,15 @@ class MyApp extends StatelessWidget{
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar:AppBar(title: Text("Exercicio 2")) ,
+        appBar:AppBar(title: Text("Exercicio2")) ,
         body: Container(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
             Column(
               children: [
-                Text('Texto da Primeira Coluna')
+                Text('Texto da Primeira Coluna'),
+                //Icone
               ],
             ),
             Column(
@@ -34,3 +36,4 @@ class MyApp extends StatelessWidget{
     );
   }  
 }
+

@@ -11,7 +11,7 @@ class CityDataBaseService {
         cityname TEXT PRIMARY KEY, 
         favoritecities INTEGER)""";
 
-  Future<Database> _getDatabase() async {
+  Future<Database> _getDatabase() async{
     return openDatabase(
       join(await getDatabasesPath(), DB_NOME), // Caminho do banco de dados
       onCreate: (db, version) {
@@ -22,16 +22,17 @@ class CityDataBaseService {
     );
   }
 
-  Future<List<Map<String, dynamic>>> getAllCities() async {
+  Future<List<Map<String,dynamic>>> getAllCities() async {
     try {
       Database db = await _getDatabase();
-      List<Map<String, dynamic>> maps = await db.query(TABLE_NOME);
-      db.close();
-      return maps;
+    List<Map<String, dynamic>> maps = await db.query(TABLE_NOME);
+    db.close();
+    return  maps;
     } catch (e) {
       print(e);
       return [];
     }
+    
   }
 
   Future<void> insertCity(City city) async {
@@ -41,27 +42,31 @@ class CityDataBaseService {
       db.close();
     } catch (e) {
       print(e);
+      
     }
+    
   }
-
   //update
   Future<void> updateCity(City city) async {
     try {
       Database db = await _getDatabase();
-      db.update(TABLE_NOME, city.toMap(),
-          where: "cityname =?", whereArgs: [city.cityName]);
+      db.update(TABLE_NOME, city.toMap(), 
+        where: "cityname =?", 
+        whereArgs: [city.cityName]
+        );
       db.close();
     } catch (e) {
       print(e);
     }
   }
-
-  //delete city
+  //delete
   Future<void> deleteCity(String city) async {
     try {
       Database db = await _getDatabase();
-      db.delete(TABLE_NOME, where: "cityname = ?", whereArgs: [city]);
+      db.delete(TABLE_NOME,where: "cityname = ?",whereArgs: [city]);
       db.close();
-    } catch (e) {}
+    } catch (e) {
+      
+    }
   }
 }

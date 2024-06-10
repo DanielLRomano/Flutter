@@ -1,67 +1,42 @@
 import 'package:flutter/material.dart';
 
-class LayoutResponsivo extends StatelessWidget {
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    return MaterialApp(
+      home: ResponsiveLayout(),
+    );
+  }
+}
+
+class ResponsiveLayout extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // Obtém informações de tamanho e orientação da tela
+    final Size screenSize = MediaQuery.of(context).size;
+    final Orientation orientation = MediaQuery.of(context).orientation;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Exercicio 6'),
+        title: Text('Layout Responsivo com MediaQuery'),
       ),
       body: Center(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            if (constraints.maxWidth > 600) {
-              // Layout para telas largas
-              return LayoutLargo();
-            } else {
-              // Layout para telas estreitas
-              return LayoutEstreito();
-            }
-          },
+        child: Container(
+          width: screenSize.width * 0.8, // 80% da largura da tela
+          height: screenSize.height * 0.5, // 50% da altura da tela
+          color: Colors.blue,
+          child: Center(
+            child: Text(
+              'Tamanho da tela: $screenSize\nOrientação: $orientation',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
         ),
       ),
     );
   }
-}
-
-class LayoutLargo extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 300,
-      height: 300,
-      color: Colors.blue,
-      child: Center(
-        child: Icon(
-          Icons.desktop_mac,
-          size: 100,
-          color: Colors.white,
-        ),
-      ),
-    );
-  }
-}
-
-class LayoutEstreito extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 200,
-      height: 200,
-      color: Colors.green,
-      child: Center(
-        child: Icon(
-          Icons.phone_android,
-          size: 80,
-          color: Colors.white,
-        ),
-      ),
-    );
-  }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: LayoutResponsivo(),
-  ));
 }

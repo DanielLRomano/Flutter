@@ -1,4 +1,4 @@
-- HomePage() = > Lista de produtos
-- Adiiconar novos produtos
-  -Modelo(produtos) -Modelo
-  -Controller (Produtos) 
+- HomePage() = > lista de Produtos - V
+    - Adicionar Novos Produtos
+        - Modelo (Produtos) - M
+        - Controller (Produtos) - C

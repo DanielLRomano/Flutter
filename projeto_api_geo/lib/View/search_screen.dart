@@ -32,8 +32,8 @@ class _SearchScreenState extends State<SearchScreen> {
                     key: _formKey,
                     child: Column(children: [
                       TextFormField(
-                          decoration: const InputDecoration(
-                              labelText: "Insira a Cidade"),
+                          decoration:
+                              const InputDecoration(labelText: "Insira a Cidade"),
                           controller: _cityController,
                           validator: (value) {
                             if (value!.trim().isEmpty) {
@@ -52,29 +52,28 @@ class _SearchScreenState extends State<SearchScreen> {
                         },
                         child: const Text("Search"),
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
+                      const SizedBox(height: 20,),
+                      
                     ]))),
-            Expanded(
-                child: FutureBuilder(
-                    future: _dbController.listCities(),
-                    builder: (context, snapshot) {
-                      if (_dbController.cities().isNotEmpty) {
-                        return ListView.builder(
-                            itemCount: _dbController.cities().length,
-                            itemBuilder: (context, index) {
-                              final city = _dbController.cities()[index];
-                              return ListTile(
-                                  title: Text(city.cityName),
-                                  onTap: () {
-                                    _findCity(city.cityName);
-                                  });
-                            });
-                      } else {
-                        return const Text("Empty List");
-                      }
-                    }))
+                    Expanded(
+                        child:FutureBuilder(
+                          future: _dbController.listCities(), 
+                          builder: (context,snapshot){
+                            if(_dbController.cities().isNotEmpty){
+                              return ListView.builder(
+                                itemCount: _dbController.cities().length,
+                                itemBuilder: (context, index){
+                                  final city = _dbController.cities()[index];
+                                  return ListTile(
+                                    title: Text(city.cityName),
+                                    onTap: () {
+                                       _findCity(city.cityName);
+                                    });
+                                });
+                            }else{
+                              return const Text("Empty List");
+                            }
+                          }))
           ],
         ),
       ),
@@ -89,11 +88,13 @@ class _SearchScreenState extends State<SearchScreen> {
       print("ok");
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text("Cidade encontrada!"),
+          content: Text("Found City!"),
           duration: Duration(seconds: 1),
         ),
       );
-      setState(() {});
+      setState(() {
+        
+      });
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -102,7 +103,7 @@ class _SearchScreenState extends State<SearchScreen> {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text("Cidade não encontrada!"),
+          content: Text("City not Found!"),
           duration: Duration(seconds: 2),
         ),
       );

@@ -8,71 +8,71 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(),
+      home: MenuDrawer(),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
-  void exibirMensagem(BuildContext context, String mensagem) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(mensagem),
-    ));
-  }
-
+class MenuDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Exercicio 7'),
-      ),
-      body: Center(
-        child: Text('Conteúdo da página'),
-      ),
-      drawer: Builder(
-        builder: (context) => Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              DrawerHeader(
-                child: Text('Menu'),
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                ),
-              ),
-              ListTile(
-                title: Text('Exibir Mensagem'),
-                onTap: () {
-                  exibirMensagem(context, 'Mensagem exibida!');
-                  Navigator.pop(context); // Fecha o Drawer
-                },
-              ),
-              ListTile(
-                title: Text('Navegar para Nova Tela'),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => NovaTela()),
-                  );
-                },
-              ),
-            ],
-          ),
+        title: Text('Menu de Opções'),
+        // Botão para abrir o Drawer
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: Icon(Icons.menu),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
+          },
         ),
       ),
-    );
-  }
-}
-
-class NovaTela extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Nova Tela'),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text(
+                'Opções do Menu',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('Opção 1'),
+              onTap: () {
+                // Adicione a lógica para ação quando a opção 1 for selecionada
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Opção 2'),
+              onTap: () {
+                // Adicione a lógica para ação quando a opção 2 for selecionada
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Opção 3'),
+              onTap: () {
+                // Adicione a lógica para ação quando a opção 3 for selecionada
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
       body: Center(
-        child: Text('Conteúdo da nova tela'),
+        child: Text('Corpo da Aplicação'),
       ),
     );
   }

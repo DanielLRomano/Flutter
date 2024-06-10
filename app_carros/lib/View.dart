@@ -1,8 +1,9 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, non_constant_identifier_names, prefer_const_constructors_in_immutables
+import 'dart:async';
 
-import 'package:app_carros/controller.dart';
-import 'package:app_carros/model.dart';
+import 'package:app_carros/Controller.dart';
+import 'package:app_carros/Model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class TelaListaCarros extends StatelessWidget {
   final CarroController controllerCarros;
@@ -13,89 +14,93 @@ class TelaListaCarros extends StatelessWidget {
     return Scaffold(
       // Barra superior do aplicativo
       appBar: AppBar(
-        title: Text('Lista de Carros'),
+        title: Text('Meus Carros'),
       ),
       // Corpo principal do aplicativo
       body: Column(
         children: [
-          // Lista de carros usando um Consumer do Provider para atualização automática
+          // Lista de Carros
           Expanded(
-            child: ListView.builder(
+            child:
+                //Consumer<CarroController>(
+                //builder: (context, model, child) {
+                //return
+                ListView.builder(
               itemCount: controllerCarros.listarCarros.length,
               itemBuilder: (context, index) {
                 return ListTile(
+                  // Exibição do nome do carro
                   title: Text(controllerCarros.listarCarros[index].modelo),
+                  // Exclui a tarefa ao manter pressionado
                   onTap: () {
+                    // Chamando a outra tela
                     Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => TelaDetalhesCarro(
-                          controllerCarros.listarCarros[index],
-                        ),
-                      ),
-                    );
-                  },
-                  onLongPress: () {
-                    controllerCarros.excluirCarro(index);
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => TelaDetalheCarro(
+                                controllerCarros.listarCarros[index]))));
                   },
                 );
               },
             ),
+            //   },
+            // ),
           ),
         ],
       ),
+      //Adicionar FloatButton
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _adicionarCarro(context);
         },
-        child: Icon(Icons.add),
+        child: Icon(Icons.),
       ),
     );
   }
-
+  
   void _adicionarCarro(BuildContext context) {
-    TextEditingController modeloController = TextEditingController();
-    TextEditingController anoController = TextEditingController();
-
     showDialog(
       context: context,
       builder: (BuildContext context) {
+        // Use a TextEditingController to get user input
+        TextEditingController nomeController = TextEditingController();
+        TextEditingController urlController = TextEditingController();
+
         return AlertDialog(
-          title: Text('Adicionar Carro'),
+          title: Text('Adicionar Novo Carro'),
           content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
+            children: [
               TextField(
-                controller: modeloController,
-                decoration: InputDecoration(labelText: 'Modelo'),
+                controller: nomeController,
+                decoration: InputDecoration(labelText: 'Nome do Carro'),
               ),
               TextField(
-                controller: anoController,
-                decoration: InputDecoration(labelText: 'Ano'),
-              ),
-              // Campo para upload de imagem
-              TextButton.icon(
-                onPressed: () {
-                  // Aqui você pode implementar a lógica para o upload de imagem
-                },
-                icon: Icon(Icons.file_upload),
-                label: Text('Upload de Imagem'),
+                controller: urlController,
+                decoration: InputDecoration(labelText: 'URL da Imagem'),
               ),
             ],
           ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Cancelar'),
-            ),
+          actions: [
             ElevatedButton(
               onPressed: () {
-                controllerCarros.addCarros();
-                Navigator.of(context).pop();
+                // Adicionar novo carro
+                controllerCarros.adicionarCarro(
+                  nomeController.text,
+                  2023, // You can adjust the year as needed
+                  urlController.text,
+                );
+
+                // Atualizar a interface
+                Navigator.pop(context); // Close the dialog
               },
               child: Text('Adicionar'),
+            ),
+            TextButton(
+              onPressed: () {
+                // Fechar o diálogo sem adicionar o carro
+                Navigator.pop(context);
+              },
+              child: Text('Cancelar'),
             ),
           ],
         );
@@ -104,9 +109,9 @@ class TelaListaCarros extends StatelessWidget {
   }
 }
 
-class TelaDetalhesCarro extends StatelessWidget {
+class TelaDetalheCarro extends StatelessWidget {
   final Carro carro;
-  TelaDetalhesCarro(this.carro);
+  TelaDetalheCarro(this.carro);
 
   @override
   Widget build(BuildContext context) {
@@ -118,13 +123,7 @@ class TelaDetalhesCarro extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              height: 400, // Altura fixa desejada para a imagem
-              child: Image.network(
-                carro.imagemUrl,
-                fit: BoxFit.cover,
-              ),
-            ),
+            Image.network(carro.imagemUrl),
             SizedBox(height: 20),
             Text("Modelo: ${carro.modelo}"),
             Text("Ano: ${carro.ano}"),

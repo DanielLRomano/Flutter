@@ -5,6 +5,7 @@ class City {
   //cosntrutor
   City({required this.cityName, required this.favoriteCities});
   //metodos
+  
   //toMap
   Map<String,dynamic> toMap() {
     return {

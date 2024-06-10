@@ -1,13 +1,14 @@
+import 'package:app_carros/Controller.dart';
+import 'package:app_carros/View.dart';
 import 'package:flutter/material.dart';
-import 'controller.dart';
-import 'view.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final CarroController controllerCarros = CarroController();
+  final CarroController controllerCarro = CarroController();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: TelaListaCarros(controllerCarros),
+      home: TelaListaCarros(controllerCarro),
     );
   }
 }

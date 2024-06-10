@@ -1,29 +1,34 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:exemplo_json/Model/ProdutosModel.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
+
+import '../Model/ProdutosModel.dart';
+
 class ProdutoController {
   //atributo
- final List<Produto> _produtos = [];
+  final List<Produto> _produtos = [];
+
   List<Produto> get produtos =>
       _produtos; // Getter para acessar a lista de produtos
 
-
-  // Método para carregar produtos do arquivo JSON
+// Método para carregar produtos do arquivo JSON
   Future<void> loadProdutos() async {
     // Carrega o conteúdo do arquivo JSON da pasta assets
     final data = await rootBundle.loadString('assets/produtos.json');
     // Decodifica o conteúdo JSON em uma lista dinâmica
     final jsonList = json.decode(data) as List<dynamic>;
-    _produtos.clear();
     // Converte os objetos JSON em instâncias de Produto e adiciona à lista de produtos
     _produtos.addAll(jsonList.map((e) => Produto.fromJson(e)));
   }
+// Método para carregar produtos do arquivo JSON
+  // Future<void> upProdutos() async {
+  //   final data = await rootBundle.loadString('assets/produtos.json');
+  //   final jsonList = _produtos.map((produto) => produto.toJson()).toList();
+  //   await File(data).writeAsString(json.encode(jsonList));
+  // }
 
-
-  // Método para salvar produtos no arquivo JSON
   Future<void> saveProdutos() async {
     // Obtém o diretório de documentos do aplicativo
     final appDocDir = await getApplicationDocumentsDirectory();
@@ -40,6 +45,5 @@ class ProdutoController {
   void adicionarProduto(Produto produto) {
     _produtos.add(produto);
   }
-
 
 }

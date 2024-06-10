@@ -8,62 +8,86 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Exemplo de Cards'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ProductCard(
+                imageUrl: 'lib\img\image.png',
+                title: 'Produto 1',
+                description: 'Descrição do Produto 1',
+                key: null,
+              ),
+              SizedBox(height: 20),
+              ProductCard(
+                imageUrl: 'lib\img\image.png',
+                title: 'Produto 2',
+                description: 'Descrição do Produto 2',
+                key: null,
+              ),
+              SizedBox(height: 20),
+              ProductCard(
+                imageUrl: 'lib\img\image.png',
+                title: 'Produto 3',
+                description: 'Descrição do Produto 3', 
+                key: null,
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Exercicio 8'),
-      ),
-      body: ListView(
-        padding: EdgeInsets.all(16.0),
-        children: <Widget>[
-          CardProduto(
-            imagemUrl: 'https://via.placeholder.com/150',
-            titulo: 'Produto 1',
-            descricao: 'Descrição do Produto 1',
-          ),
-          CardProduto(
-            imagemUrl: 'https://via.placeholder.com/150',
-            titulo: 'Produto 2',
-            descricao: 'Descrição do Produto 2',
-          ),
-          CardProduto(
-            imagemUrl: 'https://via.placeholder.com/150',
-            titulo: 'Produto 3',
-            descricao: 'Descrição do Produto 3',
-          ),
-        ],
-      ),
-    );
-  }
-}
+class ProductCard extends StatelessWidget {
+  final String imageUrl;
+  final String title;
+  final String description;
 
-class CardProduto extends StatelessWidget {
-  final String imagemUrl;
-  final String titulo;
-  final String descricao;
-
-  CardProduto({required this.imagemUrl, required this.titulo, required this.descricao});
+  const ProductCard({
+    Key? key,
+    required this.imageUrl,
+    required this.title,
+    required this.description,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      margin: EdgeInsets.all(10),
       child: Column(
-        children: <Widget>[
-          Image.network(
-            imagemUrl,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.asset(
+            imageUrl,
+            width: double.infinity,
+            height: 150,
             fit: BoxFit.cover,
-            height: 200.0,
           ),
-          ListTile(
-            title: Text(titulo),
-            subtitle: Text(descricao),
+          Padding(
+            padding: EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 5),
+                Text(
+                  description,
+                  style: TextStyle(fontSize: 16),
+                ),
+              ],
+            ),
           ),
         ],
       ),

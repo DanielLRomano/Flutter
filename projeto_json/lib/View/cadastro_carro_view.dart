@@ -178,6 +178,7 @@ class _CarroCadastroScreenState extends State<CarroCadastroScreen> {
         valor: double.parse(_valorController.text));
   }
 
+
   void _limparValores() {
     _placaController.clear();
     _modeloController.clear();
@@ -192,13 +193,8 @@ class _CarroCadastroScreenState extends State<CarroCadastroScreen> {
 
   void _cadastrarCarro() {
     // verificação
-    if (_placaExiste()) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("Placa Já Cadastrada"),
-        ),
-      );
-      return;
+    for (var element in collection) {
+      
     }
     //cadastro
     _controller.addCarro(criarObjeto());
@@ -212,17 +208,5 @@ class _CarroCadastroScreenState extends State<CarroCadastroScreen> {
         content: Text("Carro Cadastrado com Sucesso"),
       ),
     );
-  }
-
-  bool _placaExiste() {
-    //Ober a placa do novo carro a ser cadastrado
-    String novaPlaca = criarObjeto().placa;
-    //Verificar se a placa já existe na lista de carros
-    for (Carro carro in _controller.carroList) {
-      if (carro.placa == novaPlaca) {
-        return true;
-      }
-    }
-    return false;
   }
 }

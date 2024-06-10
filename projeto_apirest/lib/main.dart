@@ -12,11 +12,10 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: ,
+    return MaterialApp(
       home: HomeScreen(),
       routes: {
-        '/lista': (context) => const ListaScreen()
+        '/lista': (context) => ListaScreen()
       },
     );
   }

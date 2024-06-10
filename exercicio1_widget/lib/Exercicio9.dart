@@ -8,35 +8,41 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(),
+      home: TabLayout(),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
+class TabLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3, // Número de abas
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Exercicio 9'),
+          title: Text('Layout com Abas'),
           bottom: TabBar(
             tabs: [
-              Tab(text: 'Tab 1'),
-              Tab(text: 'Tab 2'),
-              Tab(text: 'Tab 3'),
+              Tab(text: 'Aba 1'),
+              Tab(text: 'Aba 2'),
+              Tab(text: 'Aba 3'),
             ],
           ),
         ),
         body: TabBarView(
           children: [
-            // Conteúdo da Tab 1
-            Center(child: Text('Conteúdo da Tab 1')),
-            // Conteúdo da Tab 2
-            Center(child: Text('Conteúdo da Tab 2')),
-            // Conteúdo da Tab 3
-            Center(child: Text('Conteúdo da Tab 3')),
+            // Conteúdo da Aba 1
+            Center(
+              child: Text('Conteúdo da Aba 1'),
+            ),
+            // Conteúdo da Aba 2
+            Center(
+              child: Text('Conteúdo da Aba 2'),
+            ),
+            // Conteúdo da Aba 3
+            Center(
+              child: Text('Conteúdo da Aba 3'),
+            ),
           ],
         ),
       ),

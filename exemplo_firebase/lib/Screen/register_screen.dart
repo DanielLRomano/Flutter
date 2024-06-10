@@ -70,7 +70,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Future<User?> _registrarUser() async {
     if (_formKey.currentState!.validate()) {
       if (_passwordController == _confirmedPasswordController) {
-        return await _service.registerUsuario(
+        await _service.registerUsuario(
             _emailController.text, _confirmedPasswordController.text);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(

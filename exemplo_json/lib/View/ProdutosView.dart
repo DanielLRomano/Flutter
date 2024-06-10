@@ -1,33 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-
-
 
 import '../Controller/ProdutosController.dart';
 import '../Model/ProdutosModel.dart';
 
 class HomePage extends StatefulWidget {
-  
-
   @override
- _HomePageState createState() => _HomePageState();
-
+  _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
- final ProdutoController _produtoController = ProdutoController();
+  final ProdutoController _produtoController = ProdutoController();
   final TextEditingController _nomeController = TextEditingController();
   final TextEditingController _precoController = TextEditingController();
   final TextEditingController _categoriaController = TextEditingController();
-
 
   @override
   void initState() {
     super.initState();
     _produtoController.loadProdutos();
+    atualizar();
   }
 
+  @override
+  void atualizar() {
+    setState(() {
+      _produtoController.saveProdutos();
+    });
+  }
 
   void _adicionarProduto() {
     final nome = _nomeController.text;
@@ -35,15 +34,16 @@ class _HomePageState extends State<HomePage> {
     final categoria = _categoriaController.text;
     if (nome.isNotEmpty && preco > 0 && categoria.isNotEmpty) {
       setState(() {
-        _produtoController.adicionarProduto(Produto(nome: nome, preco: preco, categoria: categoria));
+        _produtoController.adicionarProduto(
+            Produto(nome: nome, preco: preco, categoria: categoria));
         _produtoController.saveProdutos();
+        _produtoController.upProdutos();
       });
       _nomeController.clear();
       _precoController.clear();
       _categoriaController.clear();
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +88,8 @@ class _HomePageState extends State<HomePage> {
                   final produto = _produtoController.produtos[index];
                   return ListTile(
                     title: Text(produto.nome),
-                    subtitle: Text('Preço: ${produto.preco.toStringAsFixed(2)} - Categoria: ${produto.categoria}'),
+                    subtitle: Text(
+                        'Preço: ${produto.preco.toStringAsFixed(2)} - Categoria: ${produto.categoria}'),
                   );
                 },
               ),
@@ -98,5 +99,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
 }

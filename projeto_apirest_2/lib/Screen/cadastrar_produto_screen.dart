@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_apirest_2/Controllers/produtos_controllers.dart';
-import 'package:projeto_apirest_2/Models/produto.dart';
+import 'package:projeto_apirest_2/constrollers/produtos_controllers.dart';
+import 'package:projeto_apirest_2/models/produto.dart';
 
 class CadastrarProdutoScreen extends StatefulWidget {
   const CadastrarProdutoScreen({super.key});

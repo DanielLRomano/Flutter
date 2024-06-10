@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "935718723679",
-    "project_id": "teste-firebase-noite",
-    "storage_bucket": "teste-firebase-noite.appspot.com"
+    "project_number": "970247074321",
+    "project_id": "teste-firebase-noite-fc07f",
+    "storage_bucket": "teste-firebase-noite-fc07f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:935718723679:android:017116a8d2d7813d503bea",
+        "mobilesdk_app_id": "1:970247074321:android:dd3d6d14b88ed74d6d77b0",
         "android_client_info": {
-          "package_name": "br.com"
+          "package_name": "br.com.diogotb"
         }
       },
       "oauth_client": [
         {
-          "client_id": "935718723679-4p2eef4nqe1ub9qpi63ksaufq6pa8i5t.apps.googleusercontent.com",
+          "client_id": "970247074321-92luufk22vj5m72jo1hp3h80ggmk731k.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB2VzaWK3mKnF8yimnoE9tM74SRSKrAnUs"
+          "current_key": "AIzaSyA0mhGopwi9tUYW2PZ5i5dG4lZvli2O2t4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "935718723679-4p2eef4nqe1ub9qpi63ksaufq6pa8i5t.apps.googleusercontent.com",
+              "client_id": "970247074321-92luufk22vj5m72jo1hp3h80ggmk731k.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

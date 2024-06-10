@@ -8,6 +8,7 @@ import '../Model/city_model.dart';
 class DetailsWeatherScreen extends StatefulWidget {
   final String city;
   const DetailsWeatherScreen({super.key, required this.city});
+  
 
   @override
   State<DetailsWeatherScreen> createState() => _DetailsWeatherScreenState();

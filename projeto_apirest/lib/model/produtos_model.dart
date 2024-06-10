@@ -5,14 +5,17 @@ class Produtos {
 
   Produtos({required this.id, required this.nome, required this.codigo});
 
-  //métodos
+  //metodos
   //toJson
-  List<Map<String, dynamic>> toJson() {
+  List<Map<String,dynamic>> toJson() {
     return [
-      {'id': id, 'nome': nome, 'codigo': codigo}
+      {
+        'id': id,
+        'nome': nome,
+        'codigo': codigo
+      }
     ];
   }
-
   //fromJson
   factory Produtos.fromJson(Map<String, dynamic> json) {
     return Produtos(

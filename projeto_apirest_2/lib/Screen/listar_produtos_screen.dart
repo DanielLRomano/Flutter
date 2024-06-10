@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_apirest_2/Controllers/produtos_controllers.dart';
+import 'package:projeto_apirest_2/constrollers/produtos_controllers.dart';
+
+
 
 class ListarProdutosScreen extends StatefulWidget {
   const ListarProdutosScreen({super.key});
@@ -16,7 +18,7 @@ class _ListarProdutosScreenState extends State<ListarProdutosScreen> {
     try {
       await _controller.getProdutos();
     } catch (e) {
-      print(e);
+      print(e);    
     }
   }
 
@@ -37,12 +39,12 @@ class _ListarProdutosScreenState extends State<ListarProdutosScreen> {
                 );
               },
             );
-          } else if (snapshot.hasError) {
+          } else if(snapshot.hasError){
             return Center(
               child: Text(snapshot.error.toString()),
             );
-          } else {
-            return Center(
+          }else {
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_apirest_2/Screen/home_screen.dart';
-import 'package:projeto_apirest_2/Screen/listar_produtos_screen.dart';
 
+import 'screen/cadastrar_produto_screen.dart';
+import 'screen/home_screen.dart';
+import 'screen/listar_produtos_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home': (context) => const HomeScreen(),
         '/listar':(context) => const ListarProdutosScreen(),
-        // '/cadastrar':(context) => const CadastrarProdutoScreen()
+        '/cadastrar':(context) => const CadastrarProdutoScreen()
       },
     );
   }
