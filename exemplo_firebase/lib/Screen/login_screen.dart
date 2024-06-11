@@ -1,3 +1,4 @@
+import 'package:exemplo_firebase/Screen/todolist_screen.dart';
 import 'package:exemplo_firebase/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -41,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     ElevatedButton(
                         onPressed: () {
-                          _loginUser();
+                          _acessarTodoList();
                         },
                         child: const Text("Login"))
                   ]))),
@@ -50,12 +51,27 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<User?> _loginUser() async {
     if (_formKey.currentState!.validate()) {
-      try {
-        return await _auth.loginUsuario(
-            _emailController.text, _passwordController.text);
-      } catch (e) {
-        print(e.toString());
-      }
+      return await _auth.loginUsuario(
+          _emailController.text, _passwordController.text);
+    }else{
+      return null;
+    }
+  }
+
+  Future<void> _acessarTodoList() async {
+    User? user = await _loginUser();
+    if (user != null) {
+      print("ok");
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => TodolistScreen(user: user)));
+    }else{
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Usuário ou senha inválidos"),
+        ),
+      );
+      _emailController.clear();
+      _passwordController.clear();
     }
   }
 }
